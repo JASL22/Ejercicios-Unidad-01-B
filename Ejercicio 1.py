@@ -1,67 +1,51 @@
-import math
-def truncar_3_digitos(x):
-    if x == 0:
-        return 0
-    exp = math.floor(math.log10(abs(x)))
-    factor = 10 ** (2 - exp)
-    return math.trunc(x * factor) / factor
+def redondear_3_digitos(numero):
+    return int(numero * 1000) / 1000 
 
-def suma_ascendente_potencia2(n):
+def suma_ascendente(n, potencia):
     suma = 0
     for i in range(1, n + 1):
-        termino = 1 / (i ** 2)
-        suma = truncar_3_digitos(suma + termino)
+        termino = 1 / (i ** potencia)
+        suma = redondear_3_digitos(suma + termino)
     return suma
 
-def suma_descendente_potencia2(n):
+def suma_descendente(n, potencia):
     suma = 0
     for i in range(n, 0, -1):
-        termino = 1 / (i ** 2)
-        suma = truncar_3_digitos(suma + termino)
+        termino = 1 / (i ** potencia)
+        suma = redondear_3_digitos(suma + termino)
     return suma
 
-def suma_ascendente_potencia3(n):
-    suma = 0
-    for i in range(1, n + 1):
-        termino = 1 / (i ** 3)
-        suma = truncar_3_digitos(suma + termino)
-    return suma
-
-def suma_descendente_potencia3(n):
-    suma = 0
-    for i in range(n, 0, -1):
-        termino = 1 / (i ** 3)
-        suma = truncar_3_digitos(suma + termino)
-    return suma
-
-def suma_exacta_potencia(n, potencia):
-    return sum([1 / (i ** potencia) for i in range(1, n + 1)])
-
-def comparar_metodos(nombre, asc, desc, exacta):
-    err_asc = abs(exacta - asc)
-    err_desc = abs(exacta - desc)
-    print(f"\n{nombre}")  # Aquí estaba el error: nombre en lugar de name
-    print("Resultado exacto:", round(exacta, 6))
-    print("Ascendente:", asc, "| Error:", round(err_asc, 6))
-    print("Descendente:", desc, "| Error:", round(err_desc, 6))
-    if err_desc < err_asc:
-        print("→ El método DESCENDENTE es más preciso.")
-    elif err_asc < err_desc:
-        print("→ El método ASCENDENTE es más preciso.")
-    else:
-        print("→ Ambos métodos tienen la misma precisión.")
-
-
-# Ejecutar para n = 10
+# Parte (a) con i^2
 n = 10
-# Ejercicio a: 1/i^2
-asc_a = suma_ascendente_potencia2(n)
-desc_a = suma_descendente_potencia2(n)
-exact_a = suma_exacta_potencia(n, 2)
-comparar_metodos("Ejercicio a (1/i^2)", asc_a, desc_a, exact_a)
+potencia = 2
 
-# Ejercicio b: 1/i^3
-asc_b = suma_ascendente_potencia3(n)
-desc_b = suma_descendente_potencia3(n)
-exact_b = suma_exacta_potencia(n, 3)
-comparar_metodos("Ejercicio b (1/i^3)", asc_b, desc_b, exact_b)
+ascendente_i2 = suma_ascendente(n, potencia)
+descendente_i2 = suma_descendente(n, potencia)
+real_i2 = sum([1 / (i ** 2) for i in range(1, n + 1)])
+
+print(" Suma de 1/i^2 para i=1 a 10:")
+print(f"→ Orden ascendente (corte): {ascendente_i2}")
+print(f"→ Orden descendente (corte): {descendente_i2}")
+print(f"→ Valor real (sin corte): {real_i2:.10f}")
+
+if abs(descendente_i2 - real_i2) < abs(ascendente_i2 - real_i2):
+    print(" Método más preciso: Descendente\n")
+else:
+    print(" Método más preciso: Ascendente\n")
+
+# Parte (b) con i^3
+potencia = 3
+
+ascendente_i3 = suma_ascendente(n, potencia)
+descendente_i3 = suma_descendente(n, potencia)
+real_i3 = sum([1 / (i ** 3) for i in range(1, n + 1)])
+
+print("📘 Suma de 1/i^3 para i=1 a 10:")
+print(f"→ Orden ascendente (corte): {ascendente_i3}")
+print(f"→ Orden descendente (corte): {descendente_i3}")
+print(f"→ Valor real (sin corte): {real_i3:.10f}")
+
+if abs(descendente_i3 - real_i3) < abs(ascendente_i3 - real_i3):
+    print(" Método más preciso: Descendente")
+else:
+    print(" Método más preciso: Ascendente")
