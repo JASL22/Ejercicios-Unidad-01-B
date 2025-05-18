@@ -1,11 +1,8 @@
-Ejercicios-Unidad-01-B
-Este repositorio contiene los ejercicios de la Unidad 01-B.
+# Ejercicios-Unidad-01-B
+## Archivos del proyecto
 
-Estructura del proyecto
-ejercicios/
-Ejercicio 1.py
-Ejercicio 2.py
-Ejercicio 3.py
-Ejercicio 4.py
-Ejercicio 5.py
-README.md
+- [`Ejercicio 1.py`](./Ejercicio 1.py)  
+- [`Ejercicio 2.py`](./Ejercicio 2.py)
+- - [`Ejercicio 3.py`](./Ejercicio 3.py)
+- - [`Ejercicio 4.py`](./Ejercicio 4.py)
+- - [`Ejercicio 5.py`](./Ejercicio 5.py)  
